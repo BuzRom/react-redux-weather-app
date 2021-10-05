@@ -11,7 +11,7 @@ export default function WeatherCard() {
    }));
 
    const icon = weather.list[0].weather[0].icon;
-   const weatherIcon = `http://openweathermap.org/img/wn/${icon}.png`;
+   const weatherIcon = `https://openweathermap.org/img/wn/${icon}.png`;
    const weatherDescription = weather.list[0].weather[0].description[0].toUpperCase() + weather.list[0].weather[0].description.slice(1);
 
    return (
