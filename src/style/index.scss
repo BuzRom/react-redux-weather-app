@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@300;400&display=swap");
+@import "./variables";
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: $font-family;
+}
+
+*:active,
+*:focus {
+   outline: none;
+}
+
+.container {
+   width: $container-width;
+   max-width: 1200px;
+   margin: 0 auto;
+}

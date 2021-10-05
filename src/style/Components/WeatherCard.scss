@@ -1,0 +1,100 @@
+@import "../variables.scss";
+
+.card {
+   display: grid;
+   grid-template-rows: 52px 1fr 78px;
+   gap: 0;
+   width: 350px;
+   height: 257px;
+   background: $palette-color 0% 0% no-repeat padding-box;
+   box-shadow: 0px 3px 6px #00000029;
+   border-radius: 5px;
+   padding: 10px 15px;
+   position: relative;
+   transition: 0.3s ease all;
+
+   &__header {
+      .location {
+         display: flex;
+         justify-content: space-between;
+         .city {
+            font-size: 16px;
+         }
+         .icone {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 30px;
+            & img {
+               width: 30px;
+            }
+            .icone__text {
+               font-size: 13px;
+               color: $minor-tex-color;
+               margin: 0 10px;
+            }
+         }
+      }
+      .date {
+         font-weight: 300;
+         font-size: 18px;
+      }
+   }
+
+   &__footer {
+      display: flex;
+      justify-content: space-between;
+
+      .temperature-block {
+         display: flex;
+         justify-content: space-between;
+         align-items: flex-end;
+         flex-wrap: wrap;
+         width: 134px;
+
+         .temp {
+            font-size: 44px;
+            line-height: 44px;
+         }
+         .temp-degree {
+            border: 1px solid black;
+         }
+
+         .feels-like {
+            font-size: 13px;
+            color: $minor-tex-color;
+         }
+      }
+
+      .data {
+         display: flex;
+         flex-direction: column;
+         align-items: flex-end;
+         justify-content: flex-end;
+
+         .data__text {
+            font-size: 12px;
+         }
+      }
+   }
+
+   .card__btn {
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      width: 8px;
+      height: 8px;
+      path {
+         stroke: $minor-tex-color;
+      }
+      transition: 0.3s ease all;
+      cursor: pointer;
+
+      &:hover {
+         path {
+            stroke: #000000;
+         }
+         transform: scale(1.05);
+      }
+   }
+}
