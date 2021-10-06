@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import Graph from './Graph';
-import { date, day, mounth, time } from '../auxiliary/dateFormat'
+import { date, day, mounth, time } from '../auxiliary/dateFormat';
+import { getCelsius, getFahrenheit, getMilesPerHour } from '../auxiliary/measurementConversion';
 import '../style/Components/WeatherCard.scss';
 
 export default function WeatherCard() {
@@ -13,6 +14,12 @@ export default function WeatherCard() {
    const icon = weather.list[0].weather[0].icon;
    const weatherIcon = `https://openweathermap.org/img/wn/${icon}.png`;
    const weatherDescription = weather.list[0].weather[0].description[0].toUpperCase() + weather.list[0].weather[0].description.slice(1);
+
+   const [isCelsius, setIsCelsius] = useState(false);
+
+   const handlMainTempValue = () => {
+      setIsCelsius(!isCelsius);
+   }
 
    return (
       <div className='card'>
@@ -28,27 +35,55 @@ export default function WeatherCard() {
          </div>
 
          <div className="chart">
-            <Graph />
+            <Graph measurements={isCelsius} />
          </div>
 
          <div className="card__footer">
             <div className="temperature-block">
                <p className="temp">{
-                  (weather.list[0].main.temp >= 1)
+                  (!isCelsius)
                      ?
-                     '+' + Math.round(weather.list[0].main.temp)
+                     (getCelsius(weather.list[0].main.temp) >= 1)
+                        ?
+                        '+' + Math.round(getCelsius(weather.list[0].main.temp))
+                        :
+                        Math.round(getCelsius(weather.list[0].main.temp))
                      :
-                     Math.round(weather.list[0].main.temp)}</p>
-               {/* <div className="temp-degree">
-                  <input type="radio" name="C" id="C" />
-                  <input type="radio" name="F" id="F" />
-               </div> */}
-               <p className="feels-like">Feels like: {Math.round(weather.list[0].main.feels_like)} °C</p>
+                     Math.round(getFahrenheit(weather.list[0].main.temp))
+               }</p>
+               <div className="temp-badge-toggle">
+                  <div className="badge-item item-1">
+                     <input onChange={handlMainTempValue} defaultChecked id="C" type="radio" name="radio" />
+                     <label htmlFor="C">°C</label>
+                  </div>
+                  <div className="badge-item item-2">
+                     <input onChange={handlMainTempValue} id="F" type="radio" name="radio" />
+                     <label htmlFor="F">°F</label>
+                  </div>
+               </div>
+               <p className="feels-like">Feels like: {
+                  (!isCelsius)
+                     ?
+                     (getCelsius(weather.list[0].main.feels_like) >= 1)
+                        ?
+                        '+' + Math.round(getCelsius(weather.list[0].main.feels_like)) + ' °C'
+                        :
+                        Math.round(getCelsius(weather.list[0].main.feels_like)) + ' °C'
+                     :
+                     Math.round(getFahrenheit(weather.list[0].main.feels_like)) + ' °F'
+               }</p>
             </div>
             <div className="data">
-               <p className="data__text">Wind: <span style={{ color: '#459DE9' }}>{weather.list[0].wind.speed} m/s</span></p>
-               <p className="data__text">Humidity: <span style={{ color: '#459DE9' }}>{weather.list[0].main.humidity}%</span></p>
-               <p className="data__text">Pressure: <span style={{ color: '#459DE9' }}>{weather.list[0].main.pressure}Pa</span></p>
+               <p className="data__text">Wind: <span className='data-measurements'>{
+                  (!isCelsius)
+                     ?
+                     Math.round(weather.list[0].wind.speed * 10) / 10 + ' m/s'
+                     :
+                     Math.round(getMilesPerHour(weather.list[0].wind.speed) * 10) / 10 + ' mph'
+
+               }</span></p>
+               <p className="data__text">Humidity: <span className='data-measurements'>{weather.list[0].main.humidity}%</span></p>
+               <p className="data__text">Pressure: <span className='data-measurements'>{weather.list[0].main.pressure}hPa</span></p>
             </div>
          </div>
          <svg className="card__btn" width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">

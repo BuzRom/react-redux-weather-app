@@ -44,20 +44,58 @@
    &__footer {
       display: flex;
       justify-content: space-between;
+      width: 100%;
 
       .temperature-block {
          display: flex;
-         justify-content: space-between;
          align-items: flex-end;
          flex-wrap: wrap;
-         width: 134px;
+         width: 150px;
 
          .temp {
             font-size: 44px;
             line-height: 44px;
          }
-         .temp-degree {
-            border: 1px solid black;
+
+         .temp-badge-toggle {
+            display: flex;
+            margin-bottom: 20px;
+            position: relative;
+
+            &::before {
+               content: "";
+               position: absolute;
+               width: 1px;
+               height: 80%;
+               background-color: $temp-separator;
+               top: 50%;
+               left: 50%;
+               transform: translate(50%, -50%);
+            }
+
+            .badge-item input[type="radio"] {
+               display: none;
+            }
+
+            .badge-item label {
+               font-size: 22px;
+               color: $temp-degree-toggle;
+               cursor: pointer;
+            }
+            .item-1 {
+               padding: 0 10px 0 5px;
+            }
+
+            .item-2 {
+               padding: 0 5px 0 10px;
+            }
+
+            .item-1 input[type="radio"]:checked + label {
+               color: black;
+            }
+            .item-2 input[type="radio"]:checked + label {
+               color: black;
+            }
          }
 
          .feels-like {
@@ -74,6 +112,9 @@
 
          .data__text {
             font-size: 12px;
+         }
+         .data-measurements {
+            color: $data-measurements;
          }
       }
    }

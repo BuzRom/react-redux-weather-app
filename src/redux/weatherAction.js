@@ -19,7 +19,7 @@ export const getLocalWeather = () => {
          const lng = (location.coords.longitude);
          axios
             // .get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lng}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`)
-            .get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lng}&appid=1b12276509ecaf77d8f9c1f51b53aada&units=metric`)
+            .get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lng}&appid=1b12276509ecaf77d8f9c1f51b53aada`)
             .then(res => {
                dispatch(fetchSuccess(res.data));
             })
@@ -35,7 +35,7 @@ export const getCurrentWeatherCity = (location) => {
       dispatch(fetchStarted());
       axios
          // .get(`https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`)
-         .get(`https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=1b12276509ecaf77d8f9c1f51b53aada&units=metric`)
+         .get(`https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=1b12276509ecaf77d8f9c1f51b53aada`)
          .then(res => {
             dispatch(fetchSuccess(res.data));
          })

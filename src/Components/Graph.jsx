@@ -2,14 +2,15 @@ import React from "react";
 import { Line } from "react-chartjs-2";
 import { useSelector } from 'react-redux';
 
-import { timeArray } from '../auxiliary/timeArrayForGraphChart'
+import { timeArray } from '../auxiliary/timeArrayForGraphChart';
+import { getCelsius, getFahrenheit } from '../auxiliary/measurementConversion';
 
 
-export default function Graph() {
+export default function Graph({ isCelsius }) {
   const { weather } = useSelector(state => ({
     weather: state.weather.data
   }));
-
+  console.log(isCelsius);
   const data = canvas => {
     let tempArray = [];
     for (let i = 0; i < 8; i++) {
@@ -34,9 +35,27 @@ export default function Graph() {
     };
   }
 
-
   const options = {
     plugins: {
+      tooltip: {
+        enabled: true,
+        interaction: {
+          intersect: false
+        },
+        callbacks: {
+          label: function (context) {
+            var label = context.dataset.label || '';
+
+            if (label) {
+              label += ': ';
+            }
+            if (context.parsed.y !== null) {
+              label += Math.round(context.parsed.y) + '°C';
+            }
+            return label;
+          }
+        }
+      },
       legend: {
         labels: false,
       }
