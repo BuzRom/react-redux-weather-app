@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { setToCityList } from '../city/action';
 
 /* action types */
 export const FETCH_START = 'FETCH_START';
@@ -22,6 +23,7 @@ export const getLocalWeather = () => {
             .get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lng}&appid=1b12276509ecaf77d8f9c1f51b53aada`)
             .then(res => {
                dispatch(fetchSuccess(res.data));
+               dispatch(setToCityList(res.data.city.id));
             })
             .catch(error => {
                dispatch(fetchError(error.message || true));
@@ -38,6 +40,7 @@ export const getCurrentWeatherCity = (location) => {
          .get(`https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=1b12276509ecaf77d8f9c1f51b53aada`)
          .then(res => {
             dispatch(fetchSuccess(res.data));
+            dispatch(setToCityList(res.data.city.id));
          })
          .catch(error => {
             dispatch(fetchError(error.message || true));

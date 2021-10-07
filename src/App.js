@@ -1,6 +1,6 @@
 
 import AddCityForm from "./Components/AddCityForm";
-import WeatherCardsContainer from "./Components/WeatherCardsContainer";
+import CityCardsContainer from "./Components/CityCardsContainer";
 
 import './style/index.scss';
 
@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="container">
       <AddCityForm />
-      <WeatherCardsContainer />
+      <CityCardsContainer />
     </div>
   );
 }

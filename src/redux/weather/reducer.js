@@ -1,4 +1,4 @@
-import { FETCH_START, FETCH_SUCCESS, FETCH_ERROR } from './weatherAction'
+import { FETCH_START, FETCH_SUCCESS, FETCH_ERROR } from './action'
 
 export const initialState = { isFetching: false, data: null, isError: false };
 

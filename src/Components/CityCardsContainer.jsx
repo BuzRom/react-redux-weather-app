@@ -2,9 +2,9 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 
 import LoadingSpinner from '../Components/LoadingSpinner'
-import WeatherCard from './WeatherCard'
+import CityCard from './CityCard'
 
-export default function WeatherContainer() {
+export default function CityContainer() {
    const { isFetching, isError, weather } = useSelector(state => ({
       isFetching: state.weather.isFetching,
       isError: state.weather.isError,
@@ -15,7 +15,7 @@ export default function WeatherContainer() {
       return <LoadingSpinner />
    }
    if (weather) {
-      return <WeatherCard />
+      return <CityCard />
    }
    if (isError) {
       alert('Something went wrong! Probobly wrong city name or access to your position is denied!')

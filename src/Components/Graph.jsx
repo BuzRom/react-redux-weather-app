@@ -6,15 +6,17 @@ import { timeArray } from '../auxiliary/timeArrayForGraphChart';
 import { getCelsius, getFahrenheit } from '../auxiliary/measurementConversion';
 
 
-export default function Graph({ isCelsius }) {
+export default function Graph({ activeValue }) {
   const { weather } = useSelector(state => ({
     weather: state.weather.data
   }));
-  console.log(isCelsius);
+
   const data = canvas => {
     let tempArray = [];
     for (let i = 0; i < 8; i++) {
-      tempArray.push(weather.list[i].main.temp);
+      let celsius = getCelsius(weather.list[i].main.temp);
+      let fahrenheit = getFahrenheit(weather.list[i].main.temp);
+      (!activeValue) ? tempArray.push(fahrenheit) : tempArray.push(celsius);
     }
 
     const ctx = canvas.getContext('2d');
@@ -44,13 +46,12 @@ export default function Graph({ isCelsius }) {
         },
         callbacks: {
           label: function (context) {
-            var label = context.dataset.label || '';
-
+            let label = context.dataset.label || '';
             if (label) {
               label += ': ';
             }
             if (context.parsed.y !== null) {
-              label += Math.round(context.parsed.y) + '°C';
+              label += Math.round(context.parsed.y) + '°';
             }
             return label;
           }
