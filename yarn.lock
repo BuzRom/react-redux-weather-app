@@ -5852,6 +5852,11 @@ immer@8.0.1:
   resolved "https://registry.yarnpkg.com/immer/-/immer-8.0.1.tgz#9c73db683e2b3975c424fb0572af5889877ae656"
   integrity sha512-aqXhGP7//Gui2+UrEtvxZxSquQVXTpZ7KDxfCcKAF3Vysvw0CViVaW9RZ1j1xlIYqaaaipBoqdqeibkc18PNvA==
 
+immer@^9.0.6:
+  version "9.0.6"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-9.0.6.tgz#7a96bf2674d06c8143e327cbf73539388ddf1a73"
+  integrity sha512-G95ivKpy+EvVAnAab4fVa4YGYn24J1SpEktnJX7JJ45Bd7xqME/SCplFzYFmTbrkwZbQ4xJK1xMTUYBkN6pWsQ==
+
 import-cwd@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/import-cwd/-/import-cwd-2.1.0.tgz#aa6cf36e722761285cb371ec6519f53e2435b0a9"
@@ -11297,10 +11302,10 @@ wbuf@^1.1.0, wbuf@^1.7.3:
   dependencies:
     minimalistic-assert "^1.0.0"
 
-web-vitals@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/web-vitals/-/web-vitals-2.1.0.tgz#ebf5428875ab5bfc1056c2e80cd177001287de7b"
-  integrity sha512-npEyJP8jHf3J71t1tRTEtz9FeKp8H2udWJUUq5ykfPhhstr//TUxiYhIEzLNwk4zv2ybAilMn7v7N6Mxmuitmg==
+web-vitals@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/web-vitals/-/web-vitals-2.1.1.tgz#9ae64fa9054b8865a3fa093cd8db302676822c2a"
+  integrity sha512-6i/cE+7l095Etvjo2kbtVC8OXzLc9D8XMIWBPWAt2CME/7qmIMZWQwVoKDD277poVHNdPcLgW5Jruhbi8+8Vcw==
 
 webidl-conversions@^5.0.0:
   version "5.0.0"
