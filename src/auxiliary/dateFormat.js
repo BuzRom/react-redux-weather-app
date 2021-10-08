@@ -1,4 +1,3 @@
-
 export const day = getWeekDay(new Date());
 export const date = new Date().getDate();
 export const mounth = getMounth(new Date());

@@ -1,15 +1,11 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
-import { useSelector } from 'react-redux';
 
 import { timeArray } from '../auxiliary/timeArrayForGraphChart';
 import { getCelsius, getFahrenheit } from '../auxiliary/measurementConversion';
 
 
-export default function Graph({ activeValue }) {
-  const { weather } = useSelector(state => ({
-    weather: state.weather.data
-  }));
+export default function Graph({ weather, activeValue }) {
 
   const data = canvas => {
     let tempArray = [];

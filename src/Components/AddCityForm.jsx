@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react'
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 import { useDispatch } from 'react-redux';
 
-import { getLocalWeather, getCurrentWeatherCity } from '../redux/weather/action';
+import { getLocalWeather, getCurrentCityWeather } from '../redux/loading/action';
 import '../style/Components/AddCityForm.scss';
 
 
@@ -21,7 +21,7 @@ export default function AddCityForm() {
    const onFormSubmit = (e) => {
       e.preventDefault();
       if (location.label !== undefined) {
-         dispatch(getCurrentWeatherCity(location.label));
+         dispatch(getCurrentCityWeather(location.label));
       }
    }
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import Graph from './Graph';
 import { date, day, mounth, time } from '../auxiliary/dateFormat';
@@ -7,8 +7,7 @@ import { getCelsius, getFahrenheit, getMilesPerHour } from '../auxiliary/measure
 import { removeFromCityList } from '../redux/city/action';
 import '../style/Components/CityCard.scss';
 
-export default function CityCard() {
-   const { weather } = useSelector(state => ({ weather: state.weather.data }));
+export default function CityCard({ weather }) {
    const dispatch = useDispatch();
 
    const celsius = Math.round(getCelsius(weather.list[0].main.temp));
@@ -26,7 +25,6 @@ export default function CityCard() {
       setIsCelsius(!isCelsius);
    }
    const handlDeleteCity = () => {
-      console.log(weather.city.id);
       dispatch(removeFromCityList(weather.city.id));
    }
 
@@ -43,7 +41,7 @@ export default function CityCard() {
             <p className="date">{`${day}, ${date} ${mounth}, ${time}`}</p>
          </div>
          <div className="chart">
-            <Graph activeValue={isCelsius} />
+            <Graph activeValue={isCelsius} weather={weather} />
          </div>
          <div className="card__footer">
             <div className="temperature-block">
@@ -60,12 +58,12 @@ export default function CityCard() {
                }</p>
                <div className="temp-badge-toggle">
                   <div className="badge-item item-1">
-                     <input onChange={handlMainTempValue} defaultChecked id="C" type="radio" name="degree" />
-                     <label htmlFor="C">°C</label>
+                     <input onChange={handlMainTempValue} defaultChecked id={weather.city.id + "C"} type="radio" name={weather.city.id} />
+                     <label htmlFor={weather.city.id + "C"}>°C</label>
                   </div>
                   <div className="badge-item item-2">
-                     <input onChange={handlMainTempValue} id="F" type="radio" name="degree" />
-                     <label htmlFor="F">°F</label>
+                     <input onChange={handlMainTempValue} id={weather.city.id + "F"} type="radio" name={weather.city.id} />
+                     <label htmlFor={weather.city.id + "F"}>°F</label>
                   </div>
                </div>
                <p className="feels-like">Feels like: {
