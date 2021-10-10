@@ -1,7 +1,7 @@
 # in progress...
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
-## [Demo](https://react-redux-weather-app-demo.herokuapp.com/) :exclamation::exclamation::exclamation:*Google Map Api issue present*:exclamation::exclamation::exclamation:
+## [Demo](https://react-redux-weather-app-indol.vercel.app/) :exclamation::exclamation::exclamation:*Google Map Api issue present*:exclamation::exclamation::exclamation:
 ### Desine: [Adobe XD](https://xd.adobe.com/view/0234cb62-06be-4065-9c9f-4b01488a852b-5767/)
 
 **Must init app with <a href='https://create-react-app.dev/'>Create-React-App</a>**<br>

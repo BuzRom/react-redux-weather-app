@@ -32,9 +32,9 @@ export default function AddCityForm() {
             apiKey='AIzaSyA9bslaj5Bl5nLuQQXe8rr_PkhDvvZqzMs'
             apiOptions={{ language: 'en' }}
             autocompletionRequest={{
-               componentRestrictions: {
-                  country: ['ua'],
-               },
+               // componentRestrictions: {
+               //    country: ['ua'],
+               // },
                types: ["(regions)"],
             }}
             selectProps={{
