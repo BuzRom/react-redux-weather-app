@@ -1,13 +1,14 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 
-import { timeArray } from '../auxiliary/timeArrayForGraphChart';
+import { getTimeForcast } from '../auxiliary/timeArrayForGraphChart';
 import { getCelsius, getFahrenheit } from '../auxiliary/measurementConversion';
 
 
-export default function Graph({ weather, activeValue }) {
+export default function Graph({ weather, activeValue, hour, minute }) {
 
   const data = canvas => {
+    const timeArray = getTimeForcast(hour, minute);
     let tempArray = [];
     for (let i = 0; i < 8; i++) {
       let celsius = getCelsius(weather.list[i].main.temp);

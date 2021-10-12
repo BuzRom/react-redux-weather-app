@@ -1,25 +1,35 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import tzlookup from 'tz-lookup';
 
 import Graph from './Graph';
-import { date, day, mounth, time } from '../auxiliary/dateFormat';
+import { getWeekDay, getMounth } from '../auxiliary/dateFormat';
 import { getCelsius, getFahrenheit, getMilesPerHour } from '../auxiliary/measurementConversion';
 import { removeFromCityList } from '../redux/city/action';
 import '../style/Components/CityCard.scss';
 
 export default function CityCard({ weather }) {
+   const [isCelsius, setIsCelsius] = useState(true);
    const dispatch = useDispatch();
 
-   const celsius = Math.round(getCelsius(weather.list[0].main.temp));
-   const fahrenheit = Math.round(getFahrenheit(weather.list[0].main.temp));
-   const filesLikeCelsius = Math.round(getCelsius(weather.list[0].main.feels_like));
-   const filesLikeFahrenheit = Math.round(getFahrenheit(weather.list[0].main.feels_like));
-   const milesPerHour = Math.round(getMilesPerHour(weather.list[0].wind.speed) * 10) / 10;
+   const celsius = getCelsius(weather.list[0].main.temp);
+   const fahrenheit = getFahrenheit(weather.list[0].main.temp);
+   const filesLikeCelsius = getCelsius(weather.list[0].main.feels_like);
+   const filesLikeFahrenheit = getFahrenheit(weather.list[0].main.feels_like);
+   const milesPerHour = getMilesPerHour(weather.list[0].wind.speed) * 10 / 10;
    const icon = weather.list[0].weather[0].icon;
    const weatherIcon = `https://openweathermap.org/img/wn/${icon}.png`;
    const weatherDescription = weather.list[0].weather[0].description[0].toUpperCase() + weather.list[0].weather[0].description.slice(1);
-
-   const [isCelsius, setIsCelsius] = useState(true);
+   /* Date */
+   const tz = tzlookup(weather.city.coord.lat, weather.city.coord.lon);
+   const timeZone = new Date().toLocaleString("en-US", { timeZone: tz });
+   const d = new Date(timeZone);
+   const day = getWeekDay(new Date(d));
+   const date = new Date(d).getDate();
+   const mounth = getMounth(new Date(d));
+   const time = new Date(d).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+   const hour = new Date(d).toLocaleTimeString([], { hour: '2-digit' });
+   const minute = new Date(d).toLocaleTimeString([], { minute: '2-digit' });
 
    const handlMainTempValue = () => {
       setIsCelsius(!isCelsius);
@@ -41,7 +51,7 @@ export default function CityCard({ weather }) {
             <p className="date">{`${day}, ${date} ${mounth}, ${time}`}</p>
          </div>
          <div className="chart">
-            <Graph activeValue={isCelsius} weather={weather} />
+            <Graph activeValue={isCelsius} weather={weather} hour={hour} minute={minute} />
          </div>
          <div className="card__footer">
             <div className="temperature-block">

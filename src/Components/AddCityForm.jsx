@@ -20,8 +20,11 @@ export default function AddCityForm() {
 
    const onFormSubmit = (e) => {
       e.preventDefault();
+      const city = location.label.split(',').shift(),
+         state = location.label.split(', ').slice(1, 2).toString(),
+         country = location.label.split(' ').pop()
       if (location.label !== undefined) {
-         dispatch(getCurrentCityWeather(location.label));
+         dispatch(getCurrentCityWeather(city, state, country));
       }
    }
 

@@ -1,7 +1,5 @@
-const hour = new Date().toLocaleTimeString([], { hour: '2-digit' });
-const minute = new Date().toLocaleTimeString([], { minute: '2-digit' });
 
-const getTimeForcast = (hour, minute) => {
+export const getTimeForcast = (hour, minute) => {
    let h = Number(hour)
    let m = Number(minute)
    let timeArray = [];
@@ -17,5 +15,3 @@ const getTimeForcast = (hour, minute) => {
    }
    return timeArray.map(item => (item < 10) ? '0' + item + ':' + m : item + ':' + m);
 }
-
-export const timeArray = getTimeForcast(hour, minute);
