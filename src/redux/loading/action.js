@@ -32,12 +32,12 @@ export const getLocalWeather = () => {
    };
 };
 
-export const getCurrentCityWeather = (city, country) => {
+export const getCurrentCityWeather = (city) => {
    return (dispatch) => {
       dispatch(fetchStarted());
       axios
          // .get(`https://api.openweathermap.org/data/2.5/forecast?q=${city},${state},${country}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`)
-         .get(`https://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&appid=1b12276509ecaf77d8f9c1f51b53aada`)
+         .get(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=1b12276509ecaf77d8f9c1f51b53aada`)
          .then(res => {
             dispatch(fetchSuccess(true));
             dispatch(setToCityList(res.data));

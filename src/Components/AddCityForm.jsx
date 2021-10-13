@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react'
-import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+// import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 import { useDispatch } from 'react-redux';
 
 import { getLocalWeather, getCurrentCityWeather } from '../redux/loading/action';
@@ -20,16 +20,31 @@ export default function AddCityForm() {
 
    const onFormSubmit = (e) => {
       e.preventDefault();
-      if (location.label !== undefined) {
-         const city = location.label.split(',').shift(),
-            country = location.label.split(' ').pop()
-         dispatch(getCurrentCityWeather(city, country));
+      /* for normal input */
+      if (location.length > 0) {
+         dispatch(getCurrentCityWeather(location));
+         setLocation('')
       }
+      /* for GooglePlacesAutocomplete */
+      // if (location.label !== undefined) {
+      //    const city = location.label.split(',').shift(),
+      //       country = location.label.split(' ').pop()
+      //    dispatch(getCurrentCityWeather(city, country));
+      // }
+   }
+
+   const handleLocation = (value) => {
+      setLocation(value)
    }
 
    return (
       <form className='form' onSubmit={onFormSubmit}>
-         <GooglePlacesAutocomplete
+         <input
+            value={location}
+            onChange={(e) => { handleLocation(e.target.value) }}
+            placeholder='City name...'
+            type="text" />
+         {/* <GooglePlacesAutocomplete
             // apiKey={`${process.env.REACT_APP_GOOGLE_API_KEY}`}
             apiKey='AIzaSyA9bslaj5Bl5nLuQQXe8rr_PkhDvvZqzMs'
             apiOptions={{ language: 'en' }}
@@ -89,7 +104,7 @@ export default function AddCityForm() {
                   })
                },
             }}
-         />
+         /> */}
          <button className='form-button' type='submit'>Add</button>
       </form>
    )
