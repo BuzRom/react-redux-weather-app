@@ -1,4 +1,3 @@
-
 export const getTimeForcast = (hour, minute) => {
    let h = Number(hour)
    let m = Number(minute)

@@ -12,24 +12,24 @@ export default function CityCard({ weather }) {
    const [isCelsius, setIsCelsius] = useState(true);
    const dispatch = useDispatch();
 
-   const celsius = getCelsius(weather.list[0].main.temp);
-   const fahrenheit = getFahrenheit(weather.list[0].main.temp);
-   const filesLikeCelsius = getCelsius(weather.list[0].main.feels_like);
-   const filesLikeFahrenheit = getFahrenheit(weather.list[0].main.feels_like);
-   const milesPerHour = getMilesPerHour(weather.list[0].wind.speed) * 10 / 10;
-   const icon = weather.list[0].weather[0].icon;
-   const weatherIcon = `https://openweathermap.org/img/wn/${icon}.png`;
-   const weatherDescription = weather.list[0].weather[0].description[0].toUpperCase() + weather.list[0].weather[0].description.slice(1);
+   const celsius = getCelsius(weather.list[0].main.temp),
+      fahrenheit = getFahrenheit(weather.list[0].main.temp),
+      filesLikeCelsius = getCelsius(weather.list[0].main.feels_like),
+      filesLikeFahrenheit = getFahrenheit(weather.list[0].main.feels_like),
+      milesPerHour = getMilesPerHour(weather.list[0].wind.speed) * 10 / 10,
+      icon = weather.list[0].weather[0].icon,
+      weatherIcon = `https://openweathermap.org/img/wn/${icon}.png`,
+      weatherDescription = weather.list[0].weather[0].description[0].toUpperCase() + weather.list[0].weather[0].description.slice(1);
    /* Date */
-   const tz = tzlookup(weather.city.coord.lat, weather.city.coord.lon);
-   const timeZone = new Date().toLocaleString("en-US", { timeZone: tz });
-   const d = new Date(timeZone);
-   const day = getWeekDay(new Date(d));
-   const date = new Date(d).getDate();
-   const mounth = getMounth(new Date(d));
-   const time = new Date(d).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-   const hour = new Date(d).toLocaleTimeString([], { hour: '2-digit' });
-   const minute = new Date(d).toLocaleTimeString([], { minute: '2-digit' });
+   const tz = tzlookup(weather.city.coord.lat, weather.city.coord.lon),
+      timeZone = new Date().toLocaleString("en-US", { timeZone: tz }),
+      d = new Date(timeZone),
+      day = getWeekDay(new Date(d)),
+      date = new Date(d).getDate(),
+      mounth = getMounth(new Date(d)),
+      time = new Date(d).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      hour = new Date(d).toLocaleTimeString([], { hour: '2-digit' }),
+      minute = new Date(d).toLocaleTimeString([], { minute: '2-digit' });
 
    const handlMainTempValue = () => {
       setIsCelsius(!isCelsius);
