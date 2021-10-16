@@ -1,6 +1,8 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
+import React, { useCallback } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
+import { } from 'react-redux';
 
+import { getLocalWeather, getCurrentCityWeather } from '../redux/loading/action';
 import LoadingSpinner from '../Components/LoadingSpinner'
 import CityCard from './CityCard'
 import '../style/Components/CityCardContainer.scss';
@@ -12,6 +14,25 @@ export default function CityContainer() {
       isError: state.loading.isError
    }));
    const city = useSelector(({ city }) => city.items);
+   const dispatch = useDispatch();
+
+   const getLocalPosition = useCallback(() => {
+      dispatch(getLocalWeather());
+   }, [dispatch]);
+
+   React.useEffect(() => {
+      getLocalPosition();
+   }, [getLocalPosition]);
+
+   const getCityFromStorage = useCallback(() => {
+      const cityStorage = JSON.parse(localStorage.getItem('city')) || [];
+      cityStorage.forEach(item => dispatch(getCurrentCityWeather(item)));
+   }, [dispatch]);
+
+   React.useEffect(() => {
+      getCityFromStorage();
+   }, [getCityFromStorage]);
+
 
    if (isFetching) {
       return <LoadingSpinner />

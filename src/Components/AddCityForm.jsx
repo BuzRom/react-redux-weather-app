@@ -1,22 +1,14 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState } from 'react'
 // import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 import { useDispatch } from 'react-redux';
 
-import { getLocalWeather, getCurrentCityWeather } from '../redux/loading/action';
+import { getCurrentCityWeather } from '../redux/loading/action';
 import '../style/Components/AddCityForm.scss';
 
 
 export default function AddCityForm() {
    const [location, setLocation] = useState('');
    const dispatch = useDispatch();
-
-   const getLocalPosition = useCallback(() => {
-      dispatch(getLocalWeather());
-   }, [dispatch]);
-
-   React.useEffect(() => {
-      getLocalPosition();
-   }, [getLocalPosition]);
 
    const onFormSubmit = (e) => {
       e.preventDefault();
@@ -46,7 +38,6 @@ export default function AddCityForm() {
             type="text" />
          {/* <GooglePlacesAutocomplete
             // apiKey={`${process.env.REACT_APP_GOOGLE_API_KEY}`}
-            apiKey='AIzaSyA9bslaj5Bl5nLuQQXe8rr_PkhDvvZqzMs'
             apiOptions={{ language: 'en' }}
             autocompletionRequest={{
                // componentRestrictions: {

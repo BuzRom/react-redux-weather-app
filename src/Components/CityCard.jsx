@@ -35,7 +35,7 @@ export default function CityCard({ weather }) {
       setIsCelsius(!isCelsius);
    }
    const handlDeleteCity = () => {
-      dispatch(removeFromCityList(weather.city.id));
+      dispatch(removeFromCityList(weather.city));
    }
 
    return (
