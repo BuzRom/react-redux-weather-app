@@ -48,7 +48,7 @@ export default function CityCard({ weather }) {
                   <p className="icone__text">{weatherDescription}</p>
                </div>
             </div>
-            <p className="date">{`${day}, ${date} ${mounth}, ${time}`}</p>
+            <p className="date">{`${day}, ${date} ${mounth},`} <span className='time-color'>{`${time}`}</span> </p>
          </div>
          <div className="chart">
             <Graph activeValue={isCelsius} weather={weather} hour={hour} minute={minute} />

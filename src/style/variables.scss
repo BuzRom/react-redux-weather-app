@@ -7,9 +7,15 @@ $button-color: #459de9;
 $minor-tex-color: #c5c5c5;
 $temp-degree-toggle: #8d8d8d;
 $temp-separator: #707070;
+
+$city-name: #e6fb04;
+$time: #30d5c8;
 $data-value: #459de9;
 
-$palette-color: #f1f2ff;
 $chart-color: #5b8cff;
-
 $spiner-color: #c5c5c5;
+
+//glass-effec
+$glass-background: rgba(255, 255, 255, 0.1);
+$glass-border: solid 1px rgba(255, 255, 255, 0.5);
+$glass-backdrop-filter: blur(5px);

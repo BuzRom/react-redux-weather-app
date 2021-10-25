@@ -19,7 +19,7 @@ export default function Graph({ weather, activeValue, hour, minute }) {
     const ctx = canvas.getContext('2d');
     const gradient = ctx.createLinearGradient(0, 0, 0, 180);
     gradient.addColorStop(0, 'rgba(91, 140, 255, .3)');
-    gradient.addColorStop(0.5, 'rgba(255, 244, 244, .3)');
+    gradient.addColorStop(0.8, 'rgba(255, 244, 244, .3)');
 
     return {
       labels: timeArray,

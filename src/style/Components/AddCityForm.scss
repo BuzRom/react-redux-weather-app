@@ -1,17 +1,18 @@
 @import "../variables.scss";
 
 .form {
-   margin: 20px 0;
+   padding: 20px 0;
    display: flex;
    justify-content: space-between;
-   width: 380px;
+   width: 350px;
 
    & input {
-      width: 250px;
+      width: 240px;
       padding: 10px;
       box-shadow: 0px 3px 6px #00000029;
       border: 1px solid transparent;
       border-radius: 5px;
+      background-color: rgb(128, 128, 128);
       cursor: pointer;
 
       &::placeholder {
@@ -19,12 +20,12 @@
          color: $input-placeholder-color;
       }
       &:focus {
-         border: 1px solid #459de9;
+         border: 1px solid $city-name;
       }
    }
 
    .form-button {
-      width: 110px;
+      width: 100px;
       padding: 10px;
       color: white;
       background: $button-color 0% 0% no-repeat padding-box;
